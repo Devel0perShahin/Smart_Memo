@@ -1,0 +1,62 @@
+@media screen and (max-width: 992px) {
+    html {
+        font-size: 55%;
+    }
+
+    footer .Title_div::before,
+    footer .Title_div::after {
+        width: 22%;
+    }
+
+}
+
+@media screen and (max-width: 690px) {
+    html {
+        font-size: 48%;
+    }
+
+    :root {
+        --Cro_width: 6%;
+        --Description_width: 50%;
+        --Total_width: calc(100% - 85% - 0.35rem + 2%);
+        --Price_width: 14%;
+        --Pieces_width: 12%;
+    }
+
+    .Description {
+        letter-spacing: 0.4rem;
+    }
+
+    footer .Title_div::before,
+    footer .Title_div::after {
+        width: 18%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    html {
+        font-size: 40%;
+    }
+    :root {
+        --Cro_width: 7%;
+        --Description_width: 46%;
+        --Total_width: calc(100% - 85% - 0.35rem + 3%);
+        --Price_width: 15%;
+        --Pieces_width: 13%;
+    }
+
+    .Pieces {
+        justify-content: flex-start;
+    }
+    .Total{
+        justify-content: flex-start;
+        padding:0 0.1rem;
+    }
+
+    footer .Title_div::before,
+    footer .Title_div::after {
+        width: 10%;
+    }
+
+}

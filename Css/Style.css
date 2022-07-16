@@ -16,12 +16,12 @@ body {
 }
 
 :root {
-    --Main_border: 0.35rem solid #EDF5E1;
-    --Dynamic_border: 0.15rem solid #EDF5E1;
-    --Nav_color: #8EE4AF;
-    --Cro_bg: rgba(55, 150, 131, 0.7);
-    --Des_bg: rgba(92, 219, 147, 0.7);
-    --Def_text_color: #05386B;
+    --Main_border: 0.35rem solid #45A29E;
+    --Dynamic_border: 0.15rem solid #45A29E;
+    --Nav_color: #1F2833;
+    --Cro_bg: rgba(31, 40, 51, 0.9);
+    --Des_bg: rgba(11, 12, 16, 0.9);
+    --Def_text_color: #66FCF1;
     --Dynamic_txt_color: #EDF5E1;
     /* ------------------------------------- */
     --Cro_width: 5%;
@@ -55,6 +55,7 @@ nav {
     border-bottom: var(--Main_border);
     height: var(--Nav_height);
     color: var(--Def_text_color);
+    user-select: none;
 }
 
 h6 {
@@ -82,7 +83,7 @@ nav .Cro {
 }
 
 nav .Active {
-    background-color: var(--Dynamic_txt_color);
+    background-color: var(--Des_bg);
     height: 100%;
 }
 
@@ -138,7 +139,7 @@ main {
 
 main .Cro_col {
     min-height: 83.78vh;
-    background: rgba(55, 150, 131, 0.7);
+    background: var(--Cro_bg);
     width: var(--Cro_width);
     border-right: var(--Main_border);
 }
@@ -153,6 +154,7 @@ main .Cro {
     font-size: 2.5rem;
     user-select: none;
     overflow: hidden;
+    /* color:var(--Des_bg) */
 }
 
 main .Cro::after {
@@ -164,7 +166,7 @@ main .Cro::after {
     -moz-border-radius: 0.5rem;
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
-    background-color: var(--Def_text_color);
+    background-color: #45A29E;
     position: absolute;
     z-index: -1;
 }
@@ -181,7 +183,7 @@ main .Number{
 
 main .Description_col {
     min-height: 83.78vh;
-    background: rgba(92, 219, 147, 0.7);
+    background: var(--Des_bg);
     width: var(--Description_width);
     border-right: var(--Main_border);
 }
@@ -190,7 +192,7 @@ main .Description_col {
 
 main .Pieces_col {
     min-height: 83.78vh;
-    background: rgba(55, 150, 131, 0.7);
+    background: var(--Cro_bg);
     width: var(--Pieces_width);
     border-right: var(--Main_border);
 }
@@ -203,7 +205,7 @@ main .Pieces {
 
 main .Prices_col {
     min-height: 83.78vh;
-    background: rgba(92, 219, 147, 0.7);
+    background: var(--Des_bg);
     width: var(--Price_width);
     border-right: var(--Main_border);
 }
@@ -216,7 +218,7 @@ main .Price {
 
 main .Total_col {
     min-height: 83.78vh;
-    background: rgba(55, 150, 131, 0.7);
+    background: var(--Cro_bg);
     width: var(--Total_width);
 }
 
@@ -226,6 +228,7 @@ main .Total {
     border-bottom: var(--Dynamic_border);
     font-size: 2rem;
     font-weight: 500;
+    color:var(--Def_text_color);
 }
 
 footer {
@@ -254,7 +257,7 @@ footer .Title_div::before,
 footer .Title_div::after {
     content: "";
     height: 0.35rem;
-    background: var(--Dynamic_txt_color);
+    background: #45A29E;
     width: 30%;
     position: absolute;
 }
@@ -286,6 +289,7 @@ footer .Number_div {
     align-items: center;
     justify-content: center;
     padding: 0 0.5rem;
+    color:#ffffff;
 }
 
 input,

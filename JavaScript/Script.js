@@ -2,17 +2,31 @@
 
 let body = document.querySelector("body");
 let Section = document.querySelectorAll("main section");
-let Cro = document.querySelectorAll("main .Cro");
+// let Cro = document.querySelectorAll("main .Cro");
 let Description = document.querySelectorAll("main .Description");
-let Pieces = document.querySelectorAll("main .Pieces");
-let Price = document.querySelectorAll("main .Price");
-let Total_col = document.querySelectorAll("main .Total");
+
+let Nav_cro = document.querySelector("nav .Cro");
+
+let Cro_arr = document.querySelectorAll("main .Cro");
+Cro_arr = Array.from(Cro_arr);
+let Textarea_arr = document.querySelectorAll("main textarea");
+Textarea_arr = Array.from(Textarea_arr);
+let Pieces_arr = document.querySelectorAll("main input.Pieces");
+Pieces_arr = Array.from(Pieces_arr);
+let Price_arr = document.querySelectorAll("main .Price");
+Price_arr = Array.from(Price_arr);
+let Total_arr = document.querySelectorAll("main .Total");
+Total_arr = Array.from(Total_arr);
+
+let Number_arr = document.querySelectorAll("main .Number");
+let Minus_arr = document.querySelectorAll("main .Minus");
 
 let Cro_no = 0;
 
 // Create_append function
 function Cre_and_append(Element_name, Append_el, ...El_class) {
-    let Out_el_name = document.createElement(Element_name); Append_el.appendChild(Out_el_name).classList.add(...El_class);
+    let Out_el_name = document.createElement(Element_name);
+    Append_el.appendChild(Out_el_name).classList.add(...El_class);
 
 }
 
@@ -29,7 +43,6 @@ function Auto_adjust_height(Textarea_arr, Heightable_El) {
     })
 
 }
-
 
 //ONLY NUMBER INPUT
 function Only_number_inp(Input_arr) {
@@ -82,30 +95,131 @@ function Calculation_and_show_display(Selection_arr, Other_arr, Total_arr, Total
 
 }
 
+// Edit click event in cromic
+let isActive = false;
+function Cro_icon_click(Click_sub, Number_arr, Minus_arr) {
+    if (!isActive) {
+        Click_sub.classList.add("Active");
+        for (const Number of Number_arr) {
+            Number.style.cssText = "left: -30%;";
+        }
+        for (const Minus of Minus_arr) {
+            Minus.style.cssText = "left: var(--none);";
+        }
+        isActive = true;
+    } else {
+        Click_sub.classList.remove("Active");
+        for (const Number of Number_arr) {
+            Number.style.cssText = "left: var(--none);";
+        }
+        for (const Minus of Minus_arr) {
+            Minus.style.cssText = "left: -30%;";
+        }
+        isActive = false;
+    }
+}
+
+//MINUS ROW FUNCTION
+function Minus_selected_row(Minus_arr, Number_arr, Number_arr, Cro_arr, Textarea_arr, Pieces_arr, Price_arr, Total_arr) {
+    Minus_arr.forEach(Element => {
+        Element.addEventListener("click", () => {
+            let Index = Minus_arr.indexOf(Element);
+            
+            if (Textarea_arr[Index].value != "" || Pieces_arr[Index].value != "" || Price_arr[Index].value != "") {
+                if (confirm("We think have some important data!")) {
+
+                    Minus_arr[Index].remove();
+                    Number_arr[Index].remove();
+                    Cro_arr[Index].remove();
+                    Textarea_arr[Index].remove();
+                    Pieces_arr[Index].remove();
+                    Price_arr[Index].remove();
+                    Total_arr[Index].remove();
+                } else {
+                    // console.log("not ok")
+                }
+
+            } else {
+                // console.log("This is blank");
+                Minus_arr[Index].remove();
+                Number_arr[Index].remove();
+                Cro_arr[Index].remove();
+                Textarea_arr[Index].remove();
+                Pieces_arr[Index].remove();
+                Price_arr[Index].remove();
+                Total_arr[Index].remove();
+            }
+        })
+    })
+}
+
+
+
 /////////// CREATE DYNAMICALLY ELEMENTS /////////////
 body.addEventListener("dblclick", () => {
+    Minus_arr = document.querySelectorAll("main .Cro .Minus");
     //-------- CROMIC NONG -----------//
-    Cro_no = Cro_no + 1;
+
 
     Cre_and_append("span", Section[0], "Cro", "Dynamic_row");
-    Cro = document.querySelectorAll("main .Cro");
-    // console.log(Cro[Cro_no])
 
-    Cro[Cro_no].innerText = Cro_no + 1;
+    Cro_arr = document.querySelectorAll("main .Cro");
+    Cro_arr = Array.from(Cro_arr);
+    Cro_no = (Cro_arr.length);
 
-    //-------- DESCRIPTION -----------//
+    Cre_and_append("span", Cro_arr[Cro_no - 1], "Number");
+    Cre_and_append("span", Cro_arr[Cro_no - 1], "Minus");
+
+    Number_arr = document.querySelectorAll("main .Cro .Number");
+    Minus_arr = document.querySelectorAll("main .Cro .Minus");
+    Minus_arr = Array.from(Minus_arr)
+
+    //AFTER MINUS SETTING CROMIC
+    Minus_arr[Cro_no - 1].innerText = "-";
+    for (let i = Number_arr.length; i > 0; i--) {
+        Number_arr[i - 1].innerText = i;
+    }
+
     Cre_and_append("textarea", Section[1], "Dynamic_row");
 
-    //-------- PIECE -----------//
     Cre_and_append("input", Section[2], "Pieces", "Dynamic_row");
 
-    //-------- PRICE -----------//
     Cre_and_append("input", Section[3], "Price", "Dynamic_row");
 
-    //-------- TOTAL -----------//
     Cre_and_append("span", Section[4], "Total", "Dynamic_row");
+
+    //CALL CRO ICON CLICK FUNCTION
+    isActive = true;
+    Cro_icon_click(Nav_cro, Number_arr, Minus_arr)
+
+    Textarea_arr = document.querySelectorAll("main textarea");
+    Textarea_arr = Array.from(Textarea_arr);
+    Pieces_arr = document.querySelectorAll("main input.Pieces");
+    Pieces_arr = Array.from(Pieces_arr);
+    Price_arr = document.querySelectorAll("main .Price");
+    Price_arr = Array.from(Price_arr);
+    Total_arr = document.querySelectorAll("main .Total");
+    Total_arr = Array.from(Total_arr);
+
+    Minus_selected_row(Minus_arr, Number_arr, Number_arr, Cro_arr, Textarea_arr, Pieces_arr, Price_arr, Total_arr)
+
 })
 
+//CALL CRO ICON CLICK FUNCTION
+Nav_cro.addEventListener("click", () => {
+    Cro_arr = document.querySelectorAll("main .Cro")
+    Number_arr = document.querySelectorAll("main .Cro .Number");
+    Minus_arr = document.querySelectorAll("main .Cro .Minus");
+    Minus_arr = Array.from(Minus_arr)
+    Cro_no = (Cro_arr.length);
+
+    //AFTER MINUS SETTING CROMIC
+    Minus_arr[Cro_no - 1].innerText = "-";
+    for (let i = Number_arr.length; i > 0; i--) {
+        Number_arr[i - 1].innerText = i;
+    }
+    Cro_icon_click(Nav_cro, Number_arr, Minus_arr)
+});
 
 body.addEventListener("click", () => {
     let Textarea_arr = document.querySelectorAll("main textarea");
@@ -118,7 +232,6 @@ body.addEventListener("click", () => {
     Price_arr = Array.from(Price_arr);
     let Total_arr = document.querySelectorAll("main .Total");
     Total_arr = Array.from(Total_arr);
-    // ---------------------------------------
 
     Auto_adjust_height(Textarea_arr, Textarea_arr);
     Auto_adjust_height(Textarea_arr, Cro_arr);
@@ -132,9 +245,8 @@ body.addEventListener("click", () => {
 
     // //==== WORK ON PIECE AND TOTAL =======//
     let Total_of_totals_display = document.querySelector(".Total_of_totals_value");
-    Calculation_and_show_display(Pieces_arr, Price_arr, Total_arr, Total_of_totals_display)
+    Calculation_and_show_display(Pieces_arr, Price_arr, Total_arr, Total_of_totals_display);
 
     // //==== WORK ON PIECE AND TOTAL =======//
-    Calculation_and_show_display(Price_arr, Pieces_arr, Total_arr, Total_of_totals_display)
-
+    Calculation_and_show_display(Price_arr, Pieces_arr, Total_arr, Total_of_totals_display);
 })

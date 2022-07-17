@@ -101,7 +101,7 @@ function Cro_icon_click(Click_sub, Number_arr, Minus_arr) {
     if (!isActive) {
         Click_sub.classList.add("Active");
         for (const Number of Number_arr) {
-            Number.style.cssText = "left: -30%;";
+            Number.style.cssText = "left: -100%;";
         }
         for (const Minus of Minus_arr) {
             Minus.style.cssText = "left: var(--none);";
@@ -113,45 +113,55 @@ function Cro_icon_click(Click_sub, Number_arr, Minus_arr) {
             Number.style.cssText = "left: var(--none);";
         }
         for (const Minus of Minus_arr) {
-            Minus.style.cssText = "left: -30%;";
+            Minus.style.cssText = "left: -100%;";
         }
         isActive = false;
     }
 }
 
 //MINUS ROW FUNCTION
-function Minus_selected_row(Minus_arr, Number_arr, Number_arr, Cro_arr, Textarea_arr, Pieces_arr, Price_arr, Total_arr) {
-    Minus_arr.forEach(Element => {
-        Element.addEventListener("click", () => {
-            let Index = Minus_arr.indexOf(Element);
-            
-            if (Textarea_arr[Index].value != "" || Pieces_arr[Index].value != "" || Price_arr[Index].value != "") {
-                if (confirm("We think have some important data!")) {
 
-                    Minus_arr[Index].remove();
-                    Number_arr[Index].remove();
-                    Cro_arr[Index].remove();
-                    Textarea_arr[Index].remove();
-                    Pieces_arr[Index].remove();
-                    Price_arr[Index].remove();
-                    Total_arr[Index].remove();
-                } else {
-                    // console.log("not ok")
-                }
+// function Minus_selected_row(Minus_arr, Number_arr, Number_arr, Cro_arr, Textarea_arr, Pieces_arr, Price_arr, Total_arr) {
+// Minus_arr.forEach(Element => {
+//     console.log(Element)
+//     let Click_completed = false;
+//     Element.addEventListener("click", () => {
+//         if (Click_completed == false) {
+//             console.log("Click is completed")
+//             let Index = Minus_arr.indexOf(Element);
+//             if (Textarea_arr[Index].value != "" || Pieces_arr[Index].value != "" || Price_arr[Index].value != "") {
 
-            } else {
-                // console.log("This is blank");
-                Minus_arr[Index].remove();
-                Number_arr[Index].remove();
-                Cro_arr[Index].remove();
-                Textarea_arr[Index].remove();
-                Pieces_arr[Index].remove();
-                Price_arr[Index].remove();
-                Total_arr[Index].remove();
-            }
-        })
-    })
-}
+//                 if (confirm("We think have some important data!")) {
+//                     Minus_arr[Index].remove();
+//                     Number_arr[Index].remove();
+//                     Cro_arr[Index].remove();
+//                     Textarea_arr[Index].remove();
+//                     Pieces_arr[Index].remove();
+//                     Price_arr[Index].remove();
+//                     Total_arr[Index].remove();
+//                     Click_completed = false;
+//                 } else {
+//                     // console.log("not ok")
+//                     Click_completed = false;
+//                 }
+
+//             } else {
+//                 // console.log("This is blank");
+//                 Minus_arr[Index].remove();
+//                 Number_arr[Index].remove();
+//                 Cro_arr[Index].remove();
+//                 Textarea_arr[Index].remove();
+//                 Pieces_arr[Index].remove();
+//                 Price_arr[Index].remove();
+//                 Total_arr[Index].remove();
+
+//                 Click_completed = false;
+//             }
+//         }
+//     })
+
+// })
+// }
 
 
 
@@ -201,7 +211,43 @@ body.addEventListener("dblclick", () => {
     Total_arr = document.querySelectorAll("main .Total");
     Total_arr = Array.from(Total_arr);
 
-    Minus_selected_row(Minus_arr, Number_arr, Number_arr, Cro_arr, Textarea_arr, Pieces_arr, Price_arr, Total_arr)
+    // Minus_selected_row(Minus_arr, Number_arr, Number_arr, Cro_arr, Textarea_arr, Pieces_arr, Price_arr, Total_arr)
+
+    Minus_arr.forEach(Element => {
+        let Click_completed = false;
+        Element.addEventListener("click", () => {
+            if (Click_completed == false) {
+                console.log("Click is completed")
+                let Index = Minus_arr.indexOf(Element);
+                if (Textarea_arr[Index].value != "" || Pieces_arr[Index].value != "" || Price_arr[Index].value != "") {
+
+
+                    Minus_arr[Index].remove();
+                    Number_arr[Index].remove();
+                    Cro_arr[Index].remove();
+                    Textarea_arr[Index].remove();
+                    Pieces_arr[Index].remove();
+                    Price_arr[Index].remove();
+                    Total_arr[Index].remove();
+                    Click_completed = false;
+
+
+                } else {
+                    // console.log("This is blank");
+                    Minus_arr[Index].remove();
+                    Number_arr[Index].remove();
+                    Cro_arr[Index].remove();
+                    Textarea_arr[Index].remove();
+                    Pieces_arr[Index].remove();
+                    Price_arr[Index].remove();
+                    Total_arr[Index].remove();
+
+                    Click_completed = false;
+                }
+            }
+        })
+
+    })
 
 })
 
@@ -240,10 +286,18 @@ body.addEventListener("click", () => {
     Auto_adjust_height(Textarea_arr, Total_arr);
 
     //ONLY NUMBER INPUT
-    Only_number_inp(Pieces_arr)
-    Only_number_inp(Price_arr)
+    Only_number_inp(Pieces_arr);
+    Only_number_inp(Price_arr);
 
     // //==== WORK ON PIECE AND TOTAL =======//
+
+    // Pieces_arr.forEach((Element) => {
+    //     Element.addEventListener("keyup", () => {
+    //         console.log((Number(Element.value)).toLocaleString("en-US"))
+    //         Element.value = (Number(Element.value).toLocaleString("en-US"))
+    //     })
+    // })
+
     let Total_of_totals_display = document.querySelector(".Total_of_totals_value");
     Calculation_and_show_display(Pieces_arr, Price_arr, Total_arr, Total_of_totals_display);
 

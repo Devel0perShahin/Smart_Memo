@@ -36,7 +36,8 @@
 
 @media screen and (max-width: 500px) {
     html {
-        font-size: 40%;
+        font-size: 35%;
+        font-weight: 400 !important;
     }
     :root {
         --Cro_width: 7%;

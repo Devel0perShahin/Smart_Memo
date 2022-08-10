@@ -1,6 +1,6 @@
 @media screen and (max-width: 992px) {
     html {
-        font-size: 55%;
+        font-size: 58%;
     }
 
     footer .Title_div::before,
@@ -12,7 +12,7 @@
 
 @media screen and (max-width: 690px) {
     html {
-        font-size: 48%;
+        font-size: 52%;
     }
 
     :root {
@@ -36,15 +36,15 @@
 
 @media screen and (max-width: 500px) {
     html {
-        font-size: 35%;
+        font-size: 48%;
         font-weight: 400 !important;
     }
     :root {
         --Cro_width: 7%;
-        --Description_width: 46%;
-        --Total_width: calc(100% - 85% - 0.35rem + 3%);
-        --Price_width: 15%;
-        --Pieces_width: 13%;
+        --Description_width: 40%;
+        --Total_width: calc(100% - 81%);
+        --Price_width: 18%;
+        --Pieces_width: 16%;
     }
 
     .Pieces {

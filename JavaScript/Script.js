@@ -68,6 +68,7 @@ function Calculation_and_show_display(Selection_arr, Other_arr, Total_arr, Total
             let Index = Selection_arr.indexOf(Element);
             // --------------------------------
             let Selecting_value = Number(Selection_arr[Index].value);
+
             let Other_value = Number(Other_arr[Index].value);
             let _Total = Selecting_value * Other_value; //INITIALIZE TOTAL
             _Total = _Total.toLocaleString("en-US");
@@ -193,8 +194,13 @@ body.addEventListener("dblclick", () => {
     Cre_and_append("textarea", Section[1], "Dynamic_row");
 
     Cre_and_append("input", Section[2], "Pieces", "Dynamic_row");
+    Pieces_arr = document.querySelectorAll("main .Pieces")
+    Pieces_arr[Pieces_arr.length - 1].setAttribute("type", "number")
+    //console.log(Pieces_arr + " " + Pieces_arr.length + " " + Pieces_arr[Pieces_arr.length - 1])
 
     Cre_and_append("input", Section[3], "Price", "Dynamic_row");
+    Price_arr = document.querySelectorAll("main .Price")
+    Price_arr[Price_arr.length - 1].setAttribute("type", "number")
 
     Cre_and_append("span", Section[4], "Total", "Dynamic_row");
 
@@ -286,8 +292,8 @@ body.addEventListener("click", () => {
     Auto_adjust_height(Textarea_arr, Total_arr);
 
     //ONLY NUMBER INPUT
-    Only_number_inp(Pieces_arr);
-    Only_number_inp(Price_arr);
+    //Only_number_inp(Pieces_arr);
+    //Only_number_inp(Price_arr);
 
     // //==== WORK ON PIECE AND TOTAL =======//
 
@@ -304,3 +310,50 @@ body.addEventListener("click", () => {
     // //==== WORK ON PIECE AND TOTAL =======//
     Calculation_and_show_display(Price_arr, Pieces_arr, Total_arr, Total_of_totals_display);
 })
+function change_language() {
+    let Menu_btn = document.querySelector(".Menu_btn");
+    let Menu_slider = document.querySelector(".Menu_slide");
+    let Slide = false;
+    function Slide_func() {
+
+        if (Slide == false) {
+            Menu_slider.style.cssText = `transform:translateX(0%)`;
+            Menu_btn.style.cssText = `transform:rotate(180deg);opacity:1;`;
+            Slide = true;
+        }
+        else {
+            Menu_slider.style.cssText = `transform:translateX(75%)`;
+            Menu_btn.style.cssText = `transform:rotate(0deg);opacity:0.3;`;
+            Slide = false;
+        }
+    }
+    Menu_btn.addEventListener('click', Slide_func);
+
+    let Bangla = document.querySelector(".Bangla");
+    let English = document.querySelector(".English");
+
+    function Change_Language(){
+        Bangla.addEventListener("click", ()=>{
+            Bangla.style.cssText=`background:#fff;color:var(--Des_bg)`;
+            English.style.cssText=`background:none;color:#fff`;
+            document.querySelector("nav .Description h6").innerText="বিবরন";
+            document.querySelector("nav .Pieces h6").innerText="পিছ";
+            document.querySelector("nav .Price h6").innerText="দর";
+            document.querySelector("nav .Total h6").innerText="মোট";
+            document.querySelector(".Title_div h6").innerText="সর্বমোট";
+            Slide_func()
+        })
+        English.addEventListener("click", ()=>{
+            Bangla.style.cssText=`background:none;color:#fff;`;
+            English.style.cssText=`background:#fff;color:var(--Des_bg)`;
+            document.querySelector("nav .Description h6").innerText="Description";
+            document.querySelector("nav .Pieces h6").innerText="Pieces";
+            document.querySelector("nav .Price h6").innerText="Price";
+            document.querySelector("nav .Total h6").innerText="Total";
+            document.querySelector(".Title_div h6").innerText="Total Of Totals";
+            Slide_func()
+        })
+    }
+    Change_Language()
+}
+change_language()

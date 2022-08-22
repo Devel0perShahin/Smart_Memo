@@ -1,3 +1,3 @@
-# Smart_note
+# Smart_Memo
 
-See live link:- https://devel0pershahin.github.io/Smart_note/Index.html
+See live link:- https://devel0pershahin.github.io/Smart_Memo/Index.html
